@@ -69,10 +69,11 @@ export default {
         this.isActive = 0;
         navigator.geolocation.getCurrentPosition(
             position => {
-                this.getStreetAddressFrom(position.coords.latitude, position.coords.longitude)
+                this.GoogleGetStreetAddressFrom(position.coords.latitude, position.coords.longitude)
             },
             error => {
                 console.log(error.message);
+                this.IQLocationGet();
             },
             this.options
         );
@@ -88,7 +89,7 @@ export default {
             this.selectedImage = require('./../assets/' + this.Product.bgSrc[index]);
             this.isActive = index;
         },
-        async getStreetAddressFrom(lat, long) {
+        async GoogleGetStreetAddressFrom(lat, long) {
             try {
                 var { data } = await axios.get(
                  "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
@@ -96,14 +97,41 @@ export default {
                     "," +
                     long +
                     "&key={AIzaSyCgmA_QwuSkDjuy5DjAXOEpph8Zx0Ocsyo}"
-                /*    "https://us1.locationiq.com/v1/reverse.php?" +
-                    "key=pk.3d2cd2ba1f3b3951d60fa60a8c4dacb5&lat=" +
-                    lat + "&lon=" + long + "&format=json" */
                 );
                 if(data.error_message) {
-                    console.log(data.error_message)
+                    console.log(data.error_message);
+                    this.IQLocationGet();
                 } else {
-                    // this.address = data.results[0].formatted_address;
+                    console.log(data)
+                    this.commande.userState = 'google test';
+                    this.commande.userCity = 'google test';
+                }
+            } catch (error) {
+                console.log(error.message);
+                this.IQLocationGet();
+            } 
+        },
+        async IQLocationGet() {
+            try {
+                var lat, long;
+                navigator.geolocation.getCurrentPosition(
+                    position => {
+                        lat = position.coords.latitude;
+                        long = position.coords.longitude;
+                    },
+                    error => {
+                        console.log(error.message);
+                    },
+                    this.options
+                );
+                var { data } = await axios.get(
+                    "https://us1.locationiq.com/v1/reverse.php?" +
+                    "key=pk.3d2cd2ba1f3b3951d60fa60a8c4dacb5&lat=" +
+                    lat + "&lon=" + long + "&format=json"
+                );
+                if(data.error_message) {
+                    console.log(data.error_message);
+                } else {
                     console.log(data)
                     this.commande.userState = data.address.state;
                     if(data.address.village) {
