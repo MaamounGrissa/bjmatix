@@ -6,32 +6,25 @@
             <h3 v-if="slide.title" v-text="slide.title" />
             <h4 v-if="slide.price" v-text="slide.price" />
             <p v-if="slide.description" v-text="slide.description" />
-            <button v-if="slide.btnTarget === 'form'" @click="modalTrigger()">Achetez</button>
+            <button v-if="slide.btnTarget === 'form'" @click="$emit('open' ,$event, myProduct)">Achetez</button>
             <button v-else-if="slide.btnTarget === 'plus'">Voir Plus</button>
         </splide-slide>
     </splide>
-    <Form :myProduct="theProduct" :isOpen="isOpen" v-show="isOpen" @close="modalTrigger()"/>
-  
 </template>
 
 <script>
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
-import Form from './Form.vue';
-
 
 export default {
     components: {
         Splide,
-        SplideSlide,
-        Form
+        SplideSlide
     },
     props: ['myProduct'],
     data() {
         return {
             slides: [],
-            theProduct: {},
-            isOpen: false
         };
     },
     created() {
@@ -49,11 +42,6 @@ export default {
                 btnTarget: this.myProduct.btnTarget[1]
             }
         ];
-    },
-    methods: {
-        modalTrigger() {
-            this.isOpen = !this.isOpen
-        }
     }
 }
 </script>

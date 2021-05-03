@@ -1,27 +1,43 @@
 <template>
   <div class="store">
       <div v-for="myProduct in productsList" :key="myProduct.id">
-           <Product  :myProduct="myProduct"/>
+           <Product :myProduct="myProduct" @open="openModal" />
       </div>
+      <Form :selectedProduct="theProduct" :isOpen="isOpen" ref="myForm" v-show="isOpen" @close="closeModal()"/>
   </div>
 </template>
 
 <script>
 import Product from "./Product.vue";
+import Form from './Form.vue';
 import * as myData from "../Data.js";
 
 export default {
   name: 'Store',
   components: {
-      Product
+      Product,
+      Form
   },
   data() {
       return {
-          productsList: []
+          productsList: [],
+          isOpen: false,
+          theProduct: {},
+          theSelectedImage: null
       }
   },
   mounted() {
-        this.productsList = myData.products
+        this.productsList = myData.products;
+  },
+  methods: {
+    openModal(evt, selectedProd) {
+        this.theProduct = selectedProd;
+        // this.$refs.myForm.selectImage(0);
+        this.isOpen = true;
+    },
+    closeModal() {
+        this.isOpen = false;
+    }
   }
 }
 </script>

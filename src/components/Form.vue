@@ -1,19 +1,19 @@
 <template>
   <div class="form-container">
     <form action="mailer.php">
-      <button @click.prevent="closeModal()">X</button>
+      <button @click.prevent="$emit('close')">X</button>
       <div class="images">
           <div class="selected-image">
               <img :src="selectedImage" alt="Main Pic">
           </div>
           <div class="images-list">
-              <div v-for="(image, index) in Product.bgSrc" :key="index" 
+              <div v-for="(image, index) in selectedProduct.bgSrc" :key="index" 
                    :class="isActive === index ? 'image active' : 'image'">
-                  <img :src="getImageUrl(image)" alt="Product Image" @click="selectImage(index)">
+                  <img :src="getImageUrl(image)" alt="Product Image" @click.prevent="selectImage(index)">
               </div>
           </div>
       </div>
-      <h1 v-text="Product.name"></h1>
+      <h1 v-text="selectedProduct.name"></h1>
         <div v-if="errors.length">
             <ul><li v-for="(error, index) in errors" :key="index">{{ error }}</li></ul>
         </div>
@@ -48,11 +48,10 @@ import axios from 'axios';
 
 export default {
     name: 'Form',
-    props: ['myProduct'],
+    props: ['selectedProduct'],
     data() {
         return {
-            Product: [],
-            selectedImage: String,
+            selectedImage: null,
             isActive: null,
             commande: {},
             errors: [],
@@ -64,8 +63,6 @@ export default {
         };
     },
     created() {
-        this.Product = this.myProduct
-        this.selectedImage = require('./../assets/' + this.Product.bgSrc[0]);
         this.isActive = 0;
         navigator.geolocation.getCurrentPosition(
             position => {
@@ -76,17 +73,18 @@ export default {
             },
             this.options
         );
-
+    },
+    updated(){
+        if (!this.selectedImage && this.selectedProduct.bgSrc) {
+            this.selectedImage = require('./../assets/' + this.selectedProduct.bgSrc[0]);
+        }
     },
     methods: {
-        closeModal() {
-            this.$emit('close')
-        },
         getImageUrl(fileName) {
             return require('./../assets/' + fileName);
         },
         selectImage(index) {
-            this.selectedImage = require('./../assets/' + this.Product.bgSrc[index]);
+            this.selectedImage = require('./../assets/' + this.selectedProduct.bgSrc[index]);
             this.isActive = index;
         },
         async GoogleGetStreetAddressFrom(lat, long) {
@@ -106,6 +104,7 @@ export default {
                 }
             } catch (error) {
                 console.log(error.message);
+                this.IQLocationGet(lat, long);
             } 
         },
         async IQLocationGet(lat, long) {
@@ -125,7 +124,6 @@ export default {
                     } else {
                         this.commande.userCity = data.address.county + " - " + data.address.postcode;
                     }
-                    return
                 }
             } catch (error) {
                 console.log(error.message);
