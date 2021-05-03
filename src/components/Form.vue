@@ -91,14 +91,14 @@ export default {
         async getStreetAddressFrom(lat, long) {
             try {
                 var { data } = await axios.get(
-                /* "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
+                 "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
                     lat +
                     "," +
                     long +
-                    "&key={AIzaSyCgmA_QwuSkDjuy5DjAXOEpph8Zx0Ocsyo}" */
-                    "https://us1.locationiq.com/v1/reverse.php?" +
+                    "&key={AIzaSyCgmA_QwuSkDjuy5DjAXOEpph8Zx0Ocsyo}"
+                /*    "https://us1.locationiq.com/v1/reverse.php?" +
                     "key=pk.3d2cd2ba1f3b3951d60fa60a8c4dacb5&lat=" +
-                    lat + "&lon=" + long + "&format=json"
+                    lat + "&lon=" + long + "&format=json" */
                 );
                 if(data.error_message) {
                     console.log(data.error_message)
