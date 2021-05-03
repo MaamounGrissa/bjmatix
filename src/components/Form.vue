@@ -106,7 +106,11 @@ export default {
                     // this.address = data.results[0].formatted_address;
                     console.log(data)
                     this.commande.userState = data.address.state;
-                    this.commande.userCity = data.address.county + " - " + data.address.postcode;
+                    if(data.address.village) {
+                        this.commande.userCity = data.address.village + " - " + data.address.postcode;
+                    } else {
+                        this.commande.userCity = data.address.county + " - " + data.address.postcode;
+                    }
                 }
             } catch (error) {
                 console.log(error.message);
