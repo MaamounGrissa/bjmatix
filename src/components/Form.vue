@@ -73,10 +73,10 @@ export default {
             },
             error => {
                 console.log(error.message);
-                this.IQLocationGet();
             },
             this.options
         );
+
     },
     methods: {
         closeModal() {
@@ -100,7 +100,7 @@ export default {
                 );
                 if(data.error_message) {
                     console.log(data.error_message);
-                    this.IQLocationGet();
+                    this.IQLocationGet(lat, long);
                 } else {
                     console.log(data)
                     this.commande.userState = 'google test';
@@ -108,22 +108,10 @@ export default {
                 }
             } catch (error) {
                 console.log(error.message);
-                this.IQLocationGet();
             } 
         },
-        async IQLocationGet() {
+        async IQLocationGet(lat, long) {
             try {
-                var lat, long;
-                navigator.geolocation.getCurrentPosition(
-                    position => {
-                        lat = position.coords.latitude;
-                        long = position.coords.longitude;
-                    },
-                    error => {
-                        console.log(error.message);
-                    },
-                    this.options
-                );
                 var { data } = await axios.get(
                     "https://us1.locationiq.com/v1/reverse.php?" +
                     "key=pk.3d2cd2ba1f3b3951d60fa60a8c4dacb5&lat=" +
