@@ -92,11 +92,9 @@ export default {
         async GoogleGetStreetAddressFrom(lat, long) {
             try {
                 var { data } = await axios.get(
-                 "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
-                    lat +
-                    "," +
-                    long +
-                    "&key={AIzaSyCgmA_QwuSkDjuy5DjAXOEpph8Zx0Ocsyo}"
+                "https://maps.googleapis.com/maps/api/geocode/json?" +
+                "&latlng=" + lat + "," + long +
+                "&key=AIzaSyCgmA_QwuSkDjuy5DjAXOEpph8Zx0Ocsyo"
                 );
                 if(data.error_message) {
                     console.log(data.error_message);
@@ -127,6 +125,7 @@ export default {
                     } else {
                         this.commande.userCity = data.address.county + " - " + data.address.postcode;
                     }
+                    return
                 }
             } catch (error) {
                 console.log(error.message);
