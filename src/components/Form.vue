@@ -18,17 +18,17 @@
             <ul><li v-for="(error, index) in errors" :key="index">{{ error }}</li></ul>
         </div>
         <div class="form-input">
-            <input id="username" v-model="userName" type="text" name="username" placeholder="Nom et Prénom - الاسم و اللقب" >
+            <input id="username" v-model="commande.userName" type="text" name="username" placeholder="Nom et Prénom - الاسم و اللقب" >
         </div>
         <div class="form-input">
-            <input id="userphone" v-model="userPhone" type="text" name="userphone" placeholder="Téléphone - الهاتف" >
+            <input id="userphone" v-model="commande.userPhone" type="text" name="userphone" placeholder="Téléphone - الهاتف" >
         </div>
         <div class="auto-pos">
             <div class="form-input">
-                <input id="userstate" v-model="userState" type="text" name="userstate" >
+                <input id="userstate" v-model="commande.userState" type="text" name="userstate" >
             </div>
             <div class="form-input">
-                <input id="usercity" v-model="userCity" type="text" name="usercity" >
+                <input id="usercity" v-model="commande.userCity" type="text" name="usercity" >
             </div>
         </div>
         <div class="manual-pos">
@@ -54,7 +54,7 @@ export default {
             Product: [],
             selectedImage: String,
             isActive: null,
-            command: {},
+            commande: {},
             errors: [],
             options : {
                 enableHighAccuracy: true,
@@ -69,10 +69,10 @@ export default {
         this.isActive = 0;
         navigator.geolocation.getCurrentPosition(
             position => {
-            this.getStreetAddressFrom(position.coords.latitude, position.coords.longitude)
+                this.getStreetAddressFrom(position.coords.latitude, position.coords.longitude)
             },
             error => {
-            console.log(error.message);
+                console.log(error.message);
             },
             this.options
         );
@@ -91,17 +91,22 @@ export default {
         async getStreetAddressFrom(lat, long) {
             try {
                 var { data } = await axios.get(
-                "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
+                /* "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
                     lat +
                     "," +
                     long +
-                    "&key={AIzaSyCgmA_QwuSkDjuy5DjAXOEpph8Zx0Ocsyo}"
+                    "&key={AIzaSyCgmA_QwuSkDjuy5DjAXOEpph8Zx0Ocsyo}" */
+                    "https://us1.locationiq.com/v1/reverse.php?" +
+                    "key=pk.3d2cd2ba1f3b3951d60fa60a8c4dacb5&lat=" +
+                    lat + "&lon=" + long + "&format=json"
                 );
                 if(data.error_message) {
                     console.log(data.error_message)
                 } else {
-                // this.address = data.results[0].formatted_address;
-                    console.log(data.results)
+                    // this.address = data.results[0].formatted_address;
+                    console.log(data)
+                    this.commande.userState = data.address.state;
+                    this.commande.userCity = data.address.county;
                 }
             } catch (error) {
                 console.log(error.message);
