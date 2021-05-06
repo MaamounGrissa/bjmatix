@@ -33,7 +33,7 @@ export default {
             { 
                 bgSrc: require('./../assets/' + this.myProduct.bgSrc[0]),
                 title: this.myProduct.name,
-                price: this.myProduct.price + ' DT',
+                price: this.myProduct.price[0] + ' DT',
                 btnTarget: this.myProduct.btnTarget[0]
             },
             { 
