@@ -48,6 +48,7 @@
             </div>
         </div>
         <button class="submit" type="submit" @click.prevent="sendEmail()">Commander</button>
+        <p id="feedback" x-show="feedback">{{ feedback }}</p>
     </form>
   </div>
 </template>
@@ -64,6 +65,7 @@ export default {
             selectedImage: null,
             isActive: null,
             isLoading: true,
+            feedback: null,
             commande: {},
             errors: [],
             options : {
@@ -138,9 +140,16 @@ export default {
 
             try {
                 emailjs.send(serviceID, templateID, templateParams, userID);
+                this.feedback = 'Votre commande est effectuée !';
 
             } catch(error) {
                 console.log({error})
+                this.feedback = "Echeck ! Essayez ultiréurenment";
+                document.getElementById('feedback').style.color = "#F00";
+                setTimeout(() => {
+                    this.$emit('closeModal')
+                }, 3000);
+
             }
 
             /* this.commande.quantity = 1;
@@ -358,6 +367,15 @@ h1 {
     float: right;
 }
 
+#feedback {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    padding: 4px;
+    font-size: 14px;
+    color: #080;
+    font-style: italic;
+    margin: 10px auto;
+
+}
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
