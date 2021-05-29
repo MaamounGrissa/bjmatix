@@ -76,6 +76,8 @@ export default {
         };
     },
     created() {
+        var v;
+        console.log(v)
         this.isLoading = true;
         this.isActive = 0;
         this.commande.quantity = 1;
@@ -374,6 +376,7 @@ h1 {
     color: #080;
     font-style: italic;
     margin: 10px auto;
+    line-height: 1.5;
 
 }
 input::-webkit-outer-spin-button,

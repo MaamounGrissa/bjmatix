@@ -54,7 +54,7 @@ export default {
 
 img {
     width: 100%;
-    height: 250px;
+    height: 300px;
     object-fit: cover;
 }
 
@@ -76,18 +76,18 @@ h3, h4 , p {
 }
 
 h3 {
-    bottom: 120px;
-    font-size: 30px;
+    bottom: 130px;
+    font-size: 2.5rem;
 }
 
 h4 {
     bottom: 70px;
-    font-size: 30px;
+    font-size: 2.5rem;
 }
 
 p {
-    bottom: 80px;
-    font-size: 16px;
+    bottom: 100px;
+    font-size: 20px;
     line-height: 1.5;
     padding-right: 30px;
 }

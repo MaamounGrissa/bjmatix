@@ -1,6 +1,6 @@
 <template>
   <div class="store">
-      <div v-for="myProduct in productsList" :key="myProduct.id">
+      <div class="product" v-for="myProduct in productsList" :key="myProduct.id">
            <Product :myProduct="myProduct" @open="openModal" />
       </div>
       <Form :selectedProduct="theProduct" :isOpen="isOpen" ref="myForm" v-show="isOpen" @close="closeModal()"/>
@@ -44,9 +44,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    .product {
-        border: 1px solid #CCC;
-        background-color: #f7f7f7;
-        padding: 20px;
-    }
+  
+
 </style>

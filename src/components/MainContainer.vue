@@ -23,6 +23,6 @@ export default {
 
 .mycontainer {
   margin: 0 auto;
-  padding-top: 108px;
+  /* padding-top: 108px; */
 }
 </style>

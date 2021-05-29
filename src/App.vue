@@ -1,5 +1,7 @@
 <template>
-  <MainContainer msg="Welcome to BJ Matrix"/>
+  <div class="app-container">
+    <MainContainer msg="Welcome to BJ Matrix"/>
+  </div>
 </template>
 
 <script>
@@ -19,5 +21,13 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  background: #f7f7f7;
+}
+
+.app-container {
+  width: 767px;
+  margin: 0 auto;
+  overflow: hidden;
+
 }
 </style>
