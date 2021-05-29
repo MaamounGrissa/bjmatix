@@ -39,7 +39,7 @@ p {
   color: azure;
 }
 
-@media(max-width: 767px) {
+@media(max-width: 500px) {
   header {
     width: 100%;
     left: 0;

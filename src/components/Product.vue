@@ -69,10 +69,10 @@ img {
 
 h3, h4 , p {
     position: absolute;
-    left: 60px;
+    left: 50px;
     color: #fff;
     z-index: 10;
-    padding-right: 30px;
+    padding-right: 35px;
 }
 
 h3 {
@@ -81,7 +81,7 @@ h3 {
 }
 
 h4 {
-    bottom: 70px;
+    bottom: 80px;
     font-size: 2.5rem;
 }
 
@@ -90,8 +90,7 @@ p {
     font-size: 20px;
     line-height: 1.7;
     padding-right: 30px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 10px;
 }
 
 button {
@@ -112,5 +111,23 @@ button {
 button:hover, button:active {
     background: #fff;
     color: #000;
+}
+
+@media(max-width: 500px) {
+    h3, h4 {
+        font-size: 1.8rem;
+    }
+
+    h3 {
+        bottom: 150px;
+    }
+
+    h4 {
+        bottom: 90px;
+    }
+
+    p {
+        font-size: 1rem;
+    }
 }
 </style>
