@@ -88,12 +88,14 @@ h4 {
 p {
     bottom: 100px;
     font-size: 20px;
-    line-height: 1.5;
+    line-height: 1.7;
     padding-right: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 button {
-    padding: 8px 20px;
+    padding: 10px 30px;
     text-align: center;
     position: absolute;
     bottom: 25px;
@@ -101,7 +103,7 @@ button {
     border: 1px solid #fff;
     color: #fff;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 20px;
     z-index: 100;
     background: transparent;
     transition: all 0.3s ease-in-out;

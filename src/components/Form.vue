@@ -208,10 +208,11 @@ export default {
 
 <style scoped>
 .form-container {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
+    max-width: 767px;
     background-color: rgba(0, 0, 0, 0.9);
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     z-index: 999;

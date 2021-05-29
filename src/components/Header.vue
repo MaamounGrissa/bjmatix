@@ -16,7 +16,7 @@ export default {
 header {
     display: flex;
     align-items: center;
-    width: 767px;
+    max-width: 767px;
    /*  position: fixed;
     top: 0;
     left: calc(100% - 767px)/2; */
@@ -43,6 +43,15 @@ p {
   header {
     width: 100%;
     left: 0;
+  }
+
+  .logo {
+    width: 170px;
+    margin-right: 15px;
+  }
+
+  p {
+    font-size: 1rem;
   }
 }
 </style>

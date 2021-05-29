@@ -25,7 +25,7 @@ export default {
 }
 
 .app-container {
-  width: 767px;
+  max-width: 767px;
   margin: 0 auto;
   overflow: hidden;
 
