@@ -127,11 +127,12 @@ button:hover, button:active {
     }
 
     button {
+        width: 200px;
         background: white;
         color: black;
         bottom: 35px;
-        right: 65px;
-        
+        right: 50%;
+        transform: translate(50%, 0);
     }
 }
 </style>

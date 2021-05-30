@@ -274,7 +274,7 @@ img {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 35px;
+    padding: 30px;
 }
 
 .image {
@@ -396,6 +396,9 @@ input::-webkit-inner-spin-button {
 }
 
 @media(max-width: 500px) {
+    .images-list {
+        padding: 15px;
+    }
     .selected-image {
         width: 160px;
         height: 160px;
