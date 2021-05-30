@@ -21,7 +21,10 @@ header {
     top: 0;
     left: calc(100% - 767px)/2; */
     z-index: 100;
-    background: #000;
+    background: #338700;
+    border-radius: 0 0 20px 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 15px -10px rgb(0 0 0 / 40%);
 }
 
 .logo {
@@ -36,7 +39,7 @@ p {
   font-weight: 600;
   text-align: center;
   line-height: 1.4;
-  color: azure;
+  color: black;
 }
 
 @media(max-width: 500px) {

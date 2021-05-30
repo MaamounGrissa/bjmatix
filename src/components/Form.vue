@@ -17,38 +17,40 @@
         <div v-if="errors.length">
             <ul><li v-for="(error, index) in errors" :key="index">{{ error }}</li></ul>
         </div>
-        <div class="quantity">
-            <div class="form-input">
-                <input id="quantity" v-model="commande.quantity" type="number" name="quantity" placeholder="Quantité - الكمية" />
-                <button id="qtn-plus" @click.prevent="plus">
-                <img src="./../assets/plus.png" alt="Plus">
-                </button>
-                <button id="qtn-moin" @click.prevent="moin">
-                    <img src="./../assets/moin.png" alt="Moin">
-                </button>
-            </div>
-            <div class="price">
-                {{ commande.price }} DT
-            </div>
-        </div>
-        <div class="form-input">
-            <input id="username" v-model="commande.userName" type="text" name="username" placeholder="Nom et Prénom - الاسم و اللقب" >
-        </div>
-        <div class="form-input">
-            <input id="userphone" v-model="commande.userPhone" type="text" name="userphone" placeholder="Téléphone - الهاتف" >
-        </div>
-        <div class="auto-pos">
-            <div class="form-input">
-                <input readonly id="userstate" v-model="commande.userState" type="text" name="userstate" placeholder="Ville - المدينة" >
-                <img class="loading" src="./../assets/loading-buffering.gif" v-show="isLoading" />
+        <div class="inputs-container">
+            <div class="quantity">
+                <div class="form-input">
+                    <input id="quantity" v-model="commande.quantity" type="number" name="quantity" placeholder="Quantité - الكمية" />
+                    <button id="qtn-plus" @click.prevent="plus">
+                    <img src="./../assets/plus.png" alt="Plus">
+                    </button>
+                    <button id="qtn-moin" @click.prevent="moin">
+                        <img src="./../assets/moin.png" alt="Moin">
+                    </button>
+                </div>
+                <div class="price">
+                    {{ commande.price }} DT
+                </div>
             </div>
             <div class="form-input">
-                <input readonly id="usercity" v-model="commande.userCity" type="text" name="usercity" placeholder="Gouvernorat - الولاية" >
-                <img class="loading" src="./../assets/loading-buffering.gif" v-show="isLoading" />
+                <input id="username" v-model="commande.userName" type="text" name="username" placeholder="Nom et Prénom - الاسم و اللقب" >
             </div>
+            <div class="form-input">
+                <input id="userphone" v-model="commande.userPhone" type="text" name="userphone" placeholder="Téléphone - الهاتف" >
+            </div>
+            <div class="auto-pos">
+                <div class="form-input">
+                    <input readonly id="userstate" v-model="commande.userState" type="text" name="userstate" placeholder="Ville - المدينة" >
+                    <img class="loading" src="./../assets/loading-buffering.gif" v-show="isLoading" />
+                </div>
+                <div class="form-input">
+                    <input readonly id="usercity" v-model="commande.userCity" type="text" name="usercity" placeholder="Gouvernorat - الولاية" >
+                    <img class="loading" src="./../assets/loading-buffering.gif" v-show="isLoading" />
+                </div>
+            </div>
+            <button class="submit" type="submit" @click.prevent="sendEmail()">Commander</button>
+            <p id="feedback" x-show="feedback">{{ feedback }}</p>
         </div>
-        <button class="submit" type="submit" @click.prevent="sendEmail()">Commander</button>
-        <p id="feedback" x-show="feedback">{{ feedback }}</p>
     </form>
   </div>
 </template>
@@ -262,7 +264,8 @@ img {
 }
 
 .selected-image {
-    width: 50%;
+    width: 310px;
+    height: 310px;
     border-radius: 20px;
 }
 
@@ -271,28 +274,30 @@ img {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 15px;
+    padding: 35px;
 }
 
 .image {
     width: 45%;
     height: 50%;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     border: 2px solid transparent;
 }
 
 .active {
-    border: 2px solid rgb(79, 168, 79)
+    border: 3px solid rgb(79, 168, 79)
 }
 
 h1 {
     text-align: center;
     color: #fff;
-    margin: 20px auto;
+    margin: 40px auto;
+    font-size: 2.5rem;
+    font-family: 'Arial Narrow Bold', sans-serif;
 }
 
 .form-input {
-    margin-bottom: 15px;
+    margin-bottom: 25px;
     position: relative;
 }
 
@@ -384,5 +389,19 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.inputs-container {
+    padding: 0 80px;
+}
+
+@media(max-width: 500px) {
+    .selected-image {
+        width: 160px;
+        height: 160px;
+    }
+    .inputs-container {
+        padding: 0;
+    }
 }
 </style>

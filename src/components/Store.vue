@@ -44,6 +44,15 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  
+  .store {
+    padding: 20px;
+  }
+
+  .product {
+    margin-bottom: 20px;
+    box-shadow: 0 20px 15px -10px rgb(0 0 0 / 40%);
+    border-radius: 20px;
+    overflow: hidden;
+  }
 
 </style>
